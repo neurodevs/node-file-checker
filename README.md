@@ -30,7 +30,9 @@ const path = '...'
 const timeoutMs = 1000
 
 const checker = FileCheckerImpl.Checker()
-const wasFound = checker.checkIfFileExists(path, timeoutMs)
+
+// Need to be in async function
+const wasFound = await checker.checkIfFileExists(path, timeoutMs)
 ```
 
 
@@ -40,4 +42,5 @@ const wasFound = checker.checkIfFileExists(path, timeoutMs)
 import { FileCheckerImpl, FakeFileChecker } from '@neurodevs/node-file-checker'
 
 FileCheckerImpl.Class = FakeFileChecker
+const fakeChecker = FileCheckerImpl.Checker()
 ```
