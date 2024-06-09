@@ -61,5 +61,9 @@
     "moduleNameMapper": {
       "^#spruce/(.*)$": "<rootDir>/build/.spruce/$1"
     }
+  },
+  "dependencies": {
+    "@sprucelabs/schema": "^30.0.87",
+    "@sprucelabs/spruce-skill-utils": "^31.0.95"
   }
 }
