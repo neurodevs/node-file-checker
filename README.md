@@ -46,3 +46,16 @@ import { FileCheckerImpl, FakeFileChecker } from '@neurodevs/node-file-checker'
 FileCheckerImpl.Class = FakeFileChecker
 const fakeChecker = FileCheckerImpl.Checker()
 ```
+
+## Create Your Own Test Double
+
+```typescript
+import { FileChecker } from '@neurodevs/node-file-checker'
+
+class MockFileChecker implements FileChecker {
+    ...
+}
+
+FileCheckerImpl.Class = MockFileChecker
+const mockChecker = FileCheckerImpl.Checker()
+```
