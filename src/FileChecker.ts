@@ -1,44 +1,58 @@
 import { assertOptions } from '@sprucelabs/schema'
 import { diskUtil } from '@sprucelabs/spruce-skill-utils'
-import { FileChecker } from './types'
+import {
+    FileChecker,
+    FileCheckerConstructor,
+    FileCheckerOptions,
+} from './types'
 
 export default class FileCheckerImpl implements FileChecker {
-    public static Class?: new () => FileChecker
-    public static checkIntervalMs = 1000
+    public static Class?: FileCheckerConstructor
 
-    protected constructor() {}
+    private readonly checkIntervalMs: number
+    private readonly timeoutMs?: number
 
-    public static Checker() {
-        return new (this.Class ?? this)()
+    protected constructor(options?: FileCheckerOptions) {
+        const { timeoutMs, checkIntervalMs = 1000 } = options ?? {}
+
+        this.timeoutMs = timeoutMs
+        this.checkIntervalMs = checkIntervalMs
     }
 
-    public async checkIfFileExists(path: string, timeoutMs?: number) {
+    public static Checker(options?: FileCheckerOptions) {
+        return new (this.Class ?? this)(options)
+    }
+
+    public async checkIfFileExists(path: string) {
         assertOptions({ path }, ['path'])
         const startMs = Date.now()
 
-        return await this._checkWithTimeout(startMs, path, timeoutMs)
+        return await this._checkIfFileExists(startMs, path)
     }
 
-    private async _checkWithTimeout(
+    private async _checkIfFileExists(
         startMs: number,
-        path: string,
-        timeoutMs: number | undefined
+        path: string
     ): Promise<boolean> {
         return await new Promise((resolve) => {
-            const durationMs = Date.now() - startMs
             const wasFound = diskUtil.doesFileExist(path)
 
-            if (wasFound || (timeoutMs && durationMs > timeoutMs)) {
+            if (wasFound || this.isTimedOut(startMs)) {
                 resolve(wasFound)
             } else {
                 setTimeout(
                     () =>
-                        this._checkWithTimeout(startMs, path, timeoutMs).then(
+                        this._checkIfFileExists(startMs, path).then(
                             (wasFound) => resolve(wasFound)
                         ),
-                    FileCheckerImpl.checkIntervalMs
+                    this.checkIntervalMs
                 )
             }
         })
+    }
+
+    private isTimedOut(startMs: number) {
+        const durationMs = Date.now() - startMs
+        return this.timeoutMs && durationMs > this.timeoutMs
     }
 }

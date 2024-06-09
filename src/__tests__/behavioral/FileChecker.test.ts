@@ -2,20 +2,22 @@ import { diskUtil } from '@sprucelabs/spruce-skill-utils'
 import { test, assert, errorAssert, generateId } from '@sprucelabs/test-utils'
 import AbstractSpruceTest from '@sprucelabs/test-utils'
 import FileCheckerImpl from '../../FileChecker'
+import { FileChecker } from '../../types'
 
 export default class FileCheckerTest extends AbstractSpruceTest {
-    private static fileChecker: FileCheckerImpl
+    private static checker: FileChecker
+    private static checkIntervalMs = 10
+
     protected static async beforeEach() {
         await super.beforeEach()
-        this.fileChecker = FileCheckerImpl.Checker() as FileCheckerImpl
-        FileCheckerImpl.checkIntervalMs = 10
+        this.checker = this.Checker()
     }
 
     @test()
     protected static async checkWithTimeoutThrowsWithMissing() {
         const err = await assert.doesThrowAsync(() =>
             // @ts-ignore
-            this.fileChecker.checkIfFileExists()
+            this.checker.checkIfFileExists()
         )
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
             parameters: ['path'],
@@ -33,6 +35,7 @@ export default class FileCheckerTest extends AbstractSpruceTest {
     protected static async waitsUntilFileIsCreated(delayMs: number) {
         let wasHit = false
         let wasFound = false
+
         const destination = this.generateFilePath('test.txt')
 
         void this.checkWithTimeout(destination).then((found) => {
@@ -45,14 +48,14 @@ export default class FileCheckerTest extends AbstractSpruceTest {
         assert.isFalse(wasHit, 'Was hit but should not have been!')
 
         this.writeRandomContent(destination)
-        await this.wait(FileCheckerImpl.checkIntervalMs + 1)
+        await this.wait(this.checkIntervalMs + 1)
 
         assert.isTrue(wasHit, 'Was not hit but should have been!')
         assert.isTrue(wasFound, 'checkWithTimeout should have returned true!')
     }
 
-    @test('can timeout with 100ms', 100)
-    @test('can timeout with 200ms', 200)
+    @test('can timeout with 100 ms', 100)
+    @test('can timeout with 200 ms', 200)
     protected static async timesOutAfterDuration(timeoutMs: number) {
         const now = Date.now()
         const wasFound = await this.checkWithTimeout(
@@ -69,7 +72,8 @@ export default class FileCheckerTest extends AbstractSpruceTest {
         destination: string,
         timeoutMs?: number
     ) {
-        return await this.fileChecker.checkIfFileExists(destination, timeoutMs)
+        const timeoutChecker = this.Checker(timeoutMs)
+        return await timeoutChecker.checkIfFileExists(destination)
     }
 
     private static writeToFile(filename: string) {
@@ -87,5 +91,12 @@ export default class FileCheckerTest extends AbstractSpruceTest {
             diskUtil.createRandomTempDir(),
             filename
         ) as string
+    }
+
+    private static Checker(timeoutMs?: number) {
+        return FileCheckerImpl.Checker({
+            timeoutMs,
+            checkIntervalMs: this.checkIntervalMs,
+        })
     }
 }
