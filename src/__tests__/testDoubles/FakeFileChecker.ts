@@ -1,4 +1,4 @@
-import { FileChecker } from '../../types'
+import { FileChecker, FileCheckerOptions } from '../../types'
 
 export default class FakeFileChecker implements FileChecker {
     public static instance?: FakeFileChecker
@@ -7,13 +7,14 @@ export default class FakeFileChecker implements FileChecker {
     public lastPathChecked?: string
     public lastTimeout?: number
 
-    public constructor() {
+    public constructor(options?: FileCheckerOptions) {
+        const { timeoutMs } = options ?? {}
+        this.lastTimeout = timeoutMs
         FakeFileChecker.instance = this
     }
 
-    public async checkIfFileExists(path: string, timeoutMs?: number) {
+    public async checkIfFileExists(path: string) {
         this.lastPathChecked = path
-        this.lastTimeout = timeoutMs
 
         return FakeFileChecker.wasFileFound
     }
