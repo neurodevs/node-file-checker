@@ -1,6 +1,6 @@
 {
   "name": "@neurodevs/node-file-checker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": "https://github.com/neurodevs/node-file-checker.git",
   "scripts": {
     "build.ci": "yarn run build.tsc && yarn run build.resolve-paths && yarn run lint",

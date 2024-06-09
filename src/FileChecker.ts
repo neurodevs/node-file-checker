@@ -2,7 +2,7 @@ import { assertOptions } from '@sprucelabs/schema'
 import { diskUtil } from '@sprucelabs/spruce-skill-utils'
 import { FileChecker } from './types'
 
-export class FileCheckerImpl implements FileChecker {
+export default class FileCheckerImpl implements FileChecker {
     public static Class?: new () => FileChecker
     public static checkIntervalMs = 1000
 

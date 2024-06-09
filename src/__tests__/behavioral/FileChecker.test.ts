@@ -1,7 +1,7 @@
 import { diskUtil } from '@sprucelabs/spruce-skill-utils'
 import { test, assert, errorAssert, generateId } from '@sprucelabs/test-utils'
 import AbstractSpruceTest from '@sprucelabs/test-utils'
-import { FileCheckerImpl } from '../../FileChecker'
+import FileCheckerImpl from '../../FileChecker'
 
 export default class FileCheckerTest extends AbstractSpruceTest {
     private static fileChecker: FileCheckerImpl
