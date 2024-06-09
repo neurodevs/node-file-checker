@@ -1,3 +1,3 @@
 export interface FileChecker {
-    checkWithTimeout(path: string): Promise<boolean>
+    checkIfFileExists(path: string): Promise<boolean>
 }

@@ -11,7 +11,7 @@ export default class FakeFileChecker implements FileChecker {
         FakeFileChecker.instance = this
     }
 
-    public async checkWithTimeout(path: string, timeoutMs?: number) {
+    public async checkIfFileExists(path: string, timeoutMs?: number) {
         this.lastPathChecked = path
         this.lastTimeout = timeoutMs
 

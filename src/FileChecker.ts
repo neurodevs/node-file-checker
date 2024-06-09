@@ -12,7 +12,7 @@ export default class FileCheckerImpl implements FileChecker {
         return new (this.Class ?? this)()
     }
 
-    public async checkWithTimeout(path: string, timeoutMs?: number) {
+    public async checkIfFileExists(path: string, timeoutMs?: number) {
         assertOptions({ path }, ['path'])
         const startMs = Date.now()
 

@@ -15,7 +15,7 @@ export default class FileCheckerTest extends AbstractSpruceTest {
     protected static async checkWithTimeoutThrowsWithMissing() {
         const err = await assert.doesThrowAsync(() =>
             // @ts-ignore
-            this.fileChecker.checkWithTimeout()
+            this.fileChecker.checkIfFileExists()
         )
         errorAssert.assertError(err, 'MISSING_PARAMETERS', {
             parameters: ['path'],
@@ -69,7 +69,7 @@ export default class FileCheckerTest extends AbstractSpruceTest {
         destination: string,
         timeoutMs?: number
     ) {
-        return await this.fileChecker.checkWithTimeout(destination, timeoutMs)
+        return await this.fileChecker.checkIfFileExists(destination, timeoutMs)
     }
 
     private static writeToFile(filename: string) {
