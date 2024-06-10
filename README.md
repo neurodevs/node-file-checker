@@ -8,6 +8,8 @@ Check whether file exists with optional timeout
 ## Static Creation Method
 
 ```typescript
+import { FileCheckerImpl } from '@neurodevs/node-file-checker'
+
 const checker = FileCheckerImpl.Checker()
 ```
 
