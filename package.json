@@ -1,6 +1,6 @@
 {
   "name": "@neurodevs/node-file-checker",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "main": "build/index.js",
   "repository": "https://github.com/neurodevs/node-file-checker.git",
   "scripts": {
@@ -26,20 +26,20 @@
     "watch.tsc": "tsc -w"
   },
   "devDependencies": {
-    "@sprucelabs/jest-json-reporter": "^8.0.248",
-    "@sprucelabs/resolve-path-aliases": "^2.0.225",
-    "@sprucelabs/test": "^9.0.41",
-    "@sprucelabs/test-utils": "^5.1.188",
-    "@types/node": "^22.5.0",
+    "@sprucelabs/jest-json-reporter": "^8.0.346",
+    "@sprucelabs/resolve-path-aliases": "^2.0.324",
+    "@sprucelabs/test": "^9.0.45",
+    "@sprucelabs/test-utils": "^5.1.291",
+    "@types/node": "^22.5.4",
     "chokidar-cli": "^3.0.0",
-    "eslint": "^9.9.0",
+    "eslint": "^9.10.0",
     "eslint-config-spruce": "^11.2.26",
     "jest": "^29.7.0",
     "jest-circus": "^29.7.0",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   },
   "description": "Check whether files exist with timeout",
   "skill": {
@@ -64,7 +64,7 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/schema": "^30.0.296",
-    "@sprucelabs/spruce-skill-utils": "^31.0.310"
+    "@sprucelabs/schema": "^30.0.393",
+    "@sprucelabs/spruce-skill-utils": "^31.0.412"
   }
 }
