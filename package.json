@@ -1,6 +1,6 @@
 {
   "name": "@neurodevs/node-file-checker",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "main": "build/index.js",
   "repository": "https://github.com/neurodevs/node-file-checker.git",
   "scripts": {
@@ -26,10 +26,10 @@
     "watch.tsc": "tsc -w"
   },
   "devDependencies": {
-    "@sprucelabs/jest-json-reporter": "^8.0.419",
-    "@sprucelabs/resolve-path-aliases": "^2.0.398",
-    "@sprucelabs/test": "^9.0.47",
-    "@sprucelabs/test-utils": "^5.1.366",
+    "@sprucelabs/jest-json-reporter": "^8.0.427",
+    "@sprucelabs/resolve-path-aliases": "^2.0.406",
+    "@sprucelabs/test": "^9.0.48",
+    "@sprucelabs/test-utils": "^5.1.375",
     "@types/node": "^22.7.4",
     "chokidar-cli": "^3.0.0",
     "eslint": "^9.11.1",
@@ -64,7 +64,7 @@
     }
   },
   "dependencies": {
-    "@sprucelabs/schema": "^30.0.468",
-    "@sprucelabs/spruce-skill-utils": "^31.0.487"
+    "@sprucelabs/schema": "^30.0.476",
+    "@sprucelabs/spruce-skill-utils": "^31.0.495"
   }
 }
