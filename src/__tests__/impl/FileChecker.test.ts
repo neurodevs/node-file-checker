@@ -1,6 +1,7 @@
 import { diskUtil } from '@sprucelabs/spruce-skill-utils'
-import { test, assert, errorAssert, generateId } from '@sprucelabs/test-utils'
+import { test, assert, errorAssert } from '@sprucelabs/test-utils'
 import AbstractSpruceTest from '@sprucelabs/test-utils'
+import generateId from '@neurodevs/generate-id'
 import FileCheckerImpl from '../../impl/FileChecker'
 import { FileChecker } from '../../types'
 
