@@ -1,8 +1,23 @@
 {
   "name": "@neurodevs/node-file-checker",
   "version": "0.3.10",
+  "description": "Check whether files exist with timeout",
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "tdd"
+  ],
+  "license": "MIT",
+  "author": "Eric Yates <hello@ericthecurious.com>",
+  "homepage": "https://github.com/neurodevs/node-file-checker",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurodevs/node-file-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neurodevs/node-file-checker/issues"
+  },
   "main": "build/index.js",
-  "repository": "https://github.com/neurodevs/node-file-checker.git",
   "scripts": {
     "build.ci": "yarn run build.tsc && yarn run build.resolve-paths && yarn run lint",
     "build.dev": "yarn run build.tsc --sourceMap ; yarn run resolve-paths.lint",
@@ -25,6 +40,10 @@
     "watch.rebuild": "yarn run clean.all && yarn install && yarn run watch.build.dev",
     "watch.tsc": "tsc -w"
   },
+  "dependencies": {
+    "@sprucelabs/schema": "^30.0.560",
+    "@sprucelabs/spruce-skill-utils": "^31.0.624"
+  },
   "devDependencies": {
     "@sprucelabs/jest-json-reporter": "^8.0.542",
     "@sprucelabs/resolve-path-aliases": "^2.0.516",
@@ -40,10 +59,6 @@
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.1",
     "typescript": "^5.6.3"
-  },
-  "description": "Check whether files exist with timeout",
-  "skill": {
-    "namespace": "node-file-checker"
   },
   "jest": {
     "testRunner": "jest-circus/runner",
@@ -63,8 +78,7 @@
       "^#spruce/(.*)$": "<rootDir>/build/.spruce/$1"
     }
   },
-  "dependencies": {
-    "@sprucelabs/schema": "^30.0.560",
-    "@sprucelabs/spruce-skill-utils": "^31.0.624"
+  "skill": {
+    "namespace": "node-file-checker"
   }
 }
