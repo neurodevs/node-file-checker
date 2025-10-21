@@ -1,4 +1,7 @@
-export { default as FileCheckerImpl } from './FileChecker'
-export { default as FakeFileChecker } from './__tests__/testDoubles/FakeFileChecker'
+export { default as FileCheckerImpl } from './impl/FileChecker'
+export * from './impl/FileChecker'
+
+export { default as FakeFileChecker } from './testDoubles/FakeFileChecker'
+export * from './testDoubles/FakeFileChecker'
 
 export * from './types'

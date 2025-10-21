@@ -1,4 +1,4 @@
-import { FileChecker, FileCheckerOptions } from '../../types'
+import { FileChecker, FileCheckerOptions } from '../types'
 
 export default class FakeFileChecker implements FileChecker {
     public static instance?: FakeFileChecker

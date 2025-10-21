@@ -4,7 +4,7 @@ import {
     FileChecker,
     FileCheckerConstructor,
     FileCheckerOptions,
-} from './types'
+} from '../types'
 
 export default class FileCheckerImpl implements FileChecker {
     public static Class?: FileCheckerConstructor
