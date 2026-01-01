@@ -45,7 +45,7 @@
     "@sprucelabs/spruce-skill-utils": "^31.0.624"
   },
   "devDependencies": {
-    "@neurodevs/generate-id": "^1.0.0",
+    "@neurodevs/generate-id": "1.1.1",
     "@sprucelabs/jest-json-reporter": "^8.0.542",
     "@sprucelabs/resolve-path-aliases": "^2.0.516",
     "@sprucelabs/test": "^9.0.59",
